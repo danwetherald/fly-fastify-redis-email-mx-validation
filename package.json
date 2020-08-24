@@ -1,0 +1,27 @@
+{
+  "name": "fly-fastify-redis-email-mx-validation",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "email-validator": "^2.0.4",
+    "fastify": "^3.2.1",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "semi": false,
+    "useTabs": false,
+    "printWidth": 120,
+    "arrowParens": "avoid",
+    "trailingComma": "es5",
+    "jsxBracketSameLine": true
+  }
+}
