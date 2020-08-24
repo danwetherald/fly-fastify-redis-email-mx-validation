@@ -9,6 +9,7 @@
   "dependencies": {
     "email-validator": "^2.0.4",
     "fastify": "^3.2.1",
+    "fastify-cors": "^4.1.0",
     "redis": "^3.0.2"
   },
   "devDependencies": {

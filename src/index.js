@@ -6,6 +6,10 @@ const redis = require('redis')
 const client = redis.createClient({ url: process.env.FLY_REDIS_CACHE_URL || 'redis://localhost:6379' })
 const port = process.env.PORT || 7000
 
+fastify.register(require('fastify-cors'), {
+  origin: /\*/,
+})
+
 fastify.get('/', (_, reply) => {
   reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send({})
 })

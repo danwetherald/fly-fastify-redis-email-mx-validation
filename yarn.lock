@@ -349,10 +349,25 @@ fast-safe-stringify@^2.0.7:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
   integrity sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
 
+fastify-cors@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/fastify-cors/-/fastify-cors-4.1.0.tgz#ae6e2533f42b033a35da85ed3d585aafd56c2210"
+  integrity sha512-Vr4AgypDkRwG16cs1ORnYItZx6FMN+gCpHvP3/nzNZL1HFzf7U/NaSgmC784VqtK8yiqSXZEoTGCsmzeSp8JVw==
+  dependencies:
+    fastify-plugin "^2.0.0"
+    vary "^1.1.2"
+
 fastify-error@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/fastify-error/-/fastify-error-0.2.0.tgz#9a1c28d4f42b6259e7a549671c8e5e2d85660634"
   integrity sha512-zabxsBatj59ROG0fhP36zNdc5Q1/eYeH9oSF9uvfrurZf8/JKfrJbMcIGrLpLWcf89rS6L91RHWm20A/X85hcA==
+
+fastify-plugin@^2.0.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-2.3.2.tgz#e8a30cae45e1f6b6e02b467eaee866a3459174f1"
+  integrity sha512-oii9LhQmbrEXDyTPDad59kZwSLN++ql9UE6+JWZLyPyibGrgYQPVu/sPJ1qhg68+76gk3MCWBjFX/Nhn/1wTxg==
+  dependencies:
+    semver "^7.3.2"
 
 fastify-warning@^0.2.0:
   version "0.2.0"
@@ -615,11 +630,6 @@ latest-version@^5.0.0:
   integrity sha512-weT+r0kTkRQdCdYCNtkMwWXQTMEswKrFBkm4ckQOMVhhqhIMI1UT2hMj+1iigIhgSZm5gTmrRXBNoGUgaTY1xA==
   dependencies:
     package-json "^6.3.0"
-
-legit@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/legit/-/legit-1.0.8.tgz#99952338ba40a81f92b9736fa48caeadc4935026"
-  integrity sha512-BV27Tc29XTO/+fkWvbevVKW20hSS9v/AmaSuKmdve5uYyuYgjl3MyPKY2pkSqLmKB1wA/9UB9z6SaTKIpU2IQw==
 
 light-my-request@^4.0.0:
   version "4.0.2"
@@ -928,6 +938,11 @@ semver@^6.0.0, semver@^6.2.0, semver@^6.3.0:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.0.tgz#ee0a64c8af5e8ceea67687b133761e1becbd1d3d"
   integrity sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==
 
+semver@^7.3.2:
+  version "7.3.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
+  integrity sha512-OrOb32TeeambH6UrhtShmF7CRDqhL6/5XpPNp2DuRH6+9QLw/orhp72j87v8Qa1ScDkvrrBNpZcDejAirJmfXQ==
+
 set-cookie-parser@^2.4.1:
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.4.6.tgz#43bdea028b9e6f176474ee5298e758b4a44799c3"
@@ -1101,6 +1116,11 @@ util-deprecate@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
+
+vary@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
+  integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
 widest-line@^3.1.0:
   version "3.1.0"
