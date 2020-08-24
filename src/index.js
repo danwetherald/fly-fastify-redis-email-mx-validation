@@ -7,7 +7,7 @@ const client = redis.createClient({ url: process.env.FLY_REDIS_CACHE_URL || 'red
 const port = process.env.PORT || 7000
 
 fastify.register(require('fastify-cors'), {
-  origin: /\*/,
+  origin: '*',
 })
 
 fastify.get('/', (_, reply) => {
