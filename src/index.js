@@ -21,41 +21,52 @@ fastify.post('/validate', async (request, reply) => {
 
     if (!validator.validate(email)) {
       reply
-        .code(406)
+        .code(200)
         .header('Content-Type', 'application/json; charset=utf-8')
         .send({ valid: false, error: 'Invalid email' })
 
       return reply
     } else {
-      client.get(`domain:${domain}`, async (err, rep) => {
-        if (rep) {
-          if (rep === 'VALID') {
-            reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send({ valid: true, error: null })
-          } else {
-            reply
-              .code(406)
-              .header('Content-Type', 'application/json; charset=utf-8')
-              .send({ valid: false, error: 'Invalid email domain name' })
-          }
-        } else {
-          dns.resolve(domain, 'MX', async (err, addresses) => {
-            if (err) {
-              client.set(`domain:${domain}`, 'INVALID')
-
-              reply
-                .code(406)
-                .header('Content-Type', 'application/json; charset=utf-8')
-                .send({ valid: false, error: 'Invalid email domain name' })
-            } else if (addresses && addresses.length > 0) {
-              client.set(`domain:${domain}`, 'VALID')
-
+      client.select(0, (_err, _res) => {
+        client.get(`domain:${domain}`, async (_err, rep) => {
+          if (rep) {
+            if (rep === 'VALID') {
               reply
                 .code(200)
                 .header('Content-Type', 'application/json; charset=utf-8')
                 .send({ valid: true, error: null })
+            } else {
+              reply
+                .code(200)
+                .header('Content-Type', 'application/json; charset=utf-8')
+                .send({ valid: false, error: 'Invalid email domain name' })
             }
-          })
-        }
+          } else {
+            dns.resolve(domain, 'MX', async (err, addresses) => {
+              if (err) {
+                client.select(1, (_err, _res) => {
+                  client.set(`domain:${domain}`, 'INVALID')
+
+                  reply
+                    .code(200)
+                    .header('Content-Type', 'application/json; charset=utf-8')
+                    .send({ valid: false, error: 'Invalid email domain name' })
+                })
+              } else if (addresses && addresses.length > 0) {
+                client.select(1, (_err, res) => {
+                  if (res) {
+                    client.set(`domain:${domain}`, 'VALID')
+
+                    reply
+                      .code(200)
+                      .header('Content-Type', 'application/json; charset=utf-8')
+                      .send({ valid: true, error: null })
+                  }
+                })
+              }
+            })
+          }
+        })
       })
       return reply
     }
