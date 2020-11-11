@@ -24,8 +24,6 @@ fastify.post('/validate', async (request, reply) => {
         .code(200)
         .header('Content-Type', 'application/json; charset=utf-8')
         .send({ valid: false, error: 'Invalid email' })
-
-      return reply
     } else {
       client.select(0, (_err, _res) => {
         client.get(`domain:${domain}`, async (_err, rep) => {
@@ -68,15 +66,14 @@ fastify.post('/validate', async (request, reply) => {
           }
         })
       })
-      return reply
     }
+
+    await reply
   } catch (error) {
     reply
       .code(406)
       .header('Content-Type', 'application/json; charset=utf-8')
       .send({ valid: false, error: 'Unknown error' })
-
-    return reply
   }
 })
 
