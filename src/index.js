@@ -14,7 +14,7 @@ fastify.get('/', (_, reply) => {
   reply.code(200).header('Content-Type', 'application/json; charset=utf-8').send({})
 })
 
-fastify.post('/validate', async (request, reply) => {
+fastify.post('/validate', (request, reply) => {
   try {
     const email = request.body.email || ''
     const domain = email.split('@')[1]
@@ -26,7 +26,7 @@ fastify.post('/validate', async (request, reply) => {
         .send({ valid: false, error: 'Invalid email' })
     } else {
       client.select(0, (_err, _res) => {
-        client.get(`domain:${domain}`, async (_err, rep) => {
+        client.get(`domain:${domain}`, (_err, rep) => {
           if (rep) {
             if (rep === 'VALID') {
               reply
@@ -40,7 +40,7 @@ fastify.post('/validate', async (request, reply) => {
                 .send({ valid: false, error: 'Invalid email domain name' })
             }
           } else {
-            dns.resolve(domain, 'MX', async (err, addresses) => {
+            dns.resolve(domain, 'MX', (err, addresses) => {
               if (err) {
                 client.select(1, (_err, _res) => {
                   client.set(`domain:${domain}`, 'INVALID')
@@ -59,8 +59,18 @@ fastify.post('/validate', async (request, reply) => {
                       .code(200)
                       .header('Content-Type', 'application/json; charset=utf-8')
                       .send({ valid: true, error: null })
+                  } else {
+                    reply
+                      .code(200)
+                      .header('Content-Type', 'application/json; charset=utf-8')
+                      .send({ valid: false, error: 'Invalid email domain name' })
                   }
                 })
+              } else {
+                reply
+                  .code(200)
+                  .header('Content-Type', 'application/json; charset=utf-8')
+                  .send({ valid: false, error: 'Invalid email domain name' })
               }
             })
           }
@@ -68,7 +78,7 @@ fastify.post('/validate', async (request, reply) => {
       })
     }
 
-    await reply
+    return reply
   } catch (error) {
     reply
       .code(406)
